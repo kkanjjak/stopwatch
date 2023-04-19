@@ -31,8 +31,9 @@
         setSeconds(event.target.value);
       };
       const startHandler = () => {
-        let targetTime = hours * 3600 + minutes * 60 + seconds;
-        console.log(targetTime);
+        let targetTime =
+          Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds);
+        console.log("토탈" + targetTime + "초");
         setInterval(stopwatch, 1000);
         function stopwatch() {
           if (targetTime > 0) {
