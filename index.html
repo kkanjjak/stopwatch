@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>스톱워치</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    function InputConsole() {
+      const [hours, setHours] = React.useState(0);
+      const hoursHandler = (event) => {
+        setHours(event.target.value);
+      };
+      const [minutes, setMinutes] = React.useState(0);
+      const minutesHandler = (event) => {
+        setMinutes(event.target.value);
+      };
+      const [seconds, setSeconds] = React.useState(0);
+      const secondsHandler = (event) => {
+        setSeconds(event.target.value);
+      };
+      const startHandler = () => {
+        let targetTime = hours * 3600 + minutes * 60 + seconds;
+        console.log(targetTime);
+        setInterval(stopwatch, 1000);
+        function stopwatch() {
+          if (targetTime > 0) {
+            targetTime -= 1;
+            console.log(targetTime);
+            let targetHours = Math.floor(targetTime / 3600);
+            console.log(targetHours);
+            let targetMinutes = Math.floor((targetTime % 3600) / 60);
+            let targetSeconds = Math.floor(((targetTime % 3600) % 60) % 60);
+            setHours(targetHours > 0 ? targetHours : 0);
+            setMinutes(targetMinutes > 0 ? targetMinutes : 0);
+            setSeconds(targetSeconds > 0 ? targetSeconds : 0);
+          }
+        }
+      };
+      const reset = () => {
+        setHours(0), setMinutes(0), setSeconds(0);
+      };
+      function stopwatch() {
+        targetTime -= 1;
+        console.log(targetTime);
+      }
+      return (
+        <div className="setTime">
+          <div>
+            <input
+              type="number"
+              min="0"
+              value={String(hours).padStart(2, 0)}
+              onChange={hoursHandler}
+            />
+            <span>시</span>
+          </div>
+          <div>
+            <input
+              type="number"
+              min="0"
+              value={String(minutes).padStart(2, 0)}
+              onChange={minutesHandler}
+            />
+            <span>분</span>
+          </div>
+          <div>
+            <input
+              type="number"
+              min="0"
+              value={String(seconds).padStart(2, 0)}
+              onChange={secondsHandler}
+            />
+            <span>초</span>
+          </div>
+          <Btn title="START" onClick={startHandler} />
+          <Btn title="RESET" onClick={reset} />
+        </div>
+      );
+    }
+
+    function Btn({ title, onClick }) {
+      return (
+        <div>
+          <button onClick={onClick}>{title}</button>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <InputConsole />
+        </div>
+      );
+    }
+    root.render(<App />);
+  </script>
+</html>

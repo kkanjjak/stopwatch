@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "TTTtangsbudaejjigaeB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.setTime {
+  display: flex;
+  flex-direction: row;
+}
+.setTime div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.setTime div input {
+  font-family: "TTTtangsbudaejjigaeB";
+  font-size: 30px;
+  text-align: center;
+
+  padding-left: 10px;
+  width: 80px;
+  height: 80px;
+  border: 6px solid tomato;
+  border-radius: 25px;
+}
+.setTime div input:focus {
+  outline: none;
+}
+.setTime div span {
+  font-family: "TTTtangsbudaejjigaeB";
+  font-size: 20px;
+  margin-top: 10px;
+}
